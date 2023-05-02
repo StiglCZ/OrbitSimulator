@@ -42,7 +42,7 @@ Short demo: https://youtu.be/0OISRY4UWtk
 #### Command line arguments
 If you will specify existing file in cmd arguments, it will use it instead of default config file inside working directory
 #### Shortcuts
-C - Clears the screen if autoclearing is off
-SPACE/SHIFT - Speeds up/ Slows down the object with last idex (on end of config file) so you can edit simulation at runtime
-F2 - Takes a screenshot
-F11 - Toggless full screen(If you end simulation before undoing it, your monitor will set to vga resolution)
+C - Clears the screen if autoclearing is off<br/>
+SPACE/SHIFT - Speeds up/ Slows down the object with last idex (on end of config file) so you can edit simulation at runtime<br/>
+F2 - Takes a screenshot<br/>
+F11 - Toggless full screen(If you end simulation before undoing it, your monitor will set to vga resolution)<br/>
