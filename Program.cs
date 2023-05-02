@@ -38,6 +38,7 @@ class Program{
     static Vector2 targetpos = new(0,0);
     static int target = -1, fps = 120, track = -1;
     static bool autoclear = false;
+    static Color backgroundClr = Color.BLACK;
     public static Dictionary<string, Color> clrs = new Dictionary<string, Color>();
     public static void Main(string[] args){
         InitColors();
@@ -51,22 +52,26 @@ class Program{
         //Load everything from config file
         foreach(string line in config){
             //Checking if special
+            string[] lns = line.Split(' ');
             if(line == String.Empty || line[0] == '$')
                 continue;
             if(line.ToUpper() == "CLEAR"){
                 autoclear = true;
                 continue;
-            }else if(line.Split(' ')[0].ToUpper() == "FOCUS"){
-                target = int.Parse(line.Split(' ')[1]);
+            }else if(lns[0].ToUpper() == "FOCUS"){
+                target = int.Parse(lns[1]);
                 continue;
-            }else if(line.Split(' ')[0].ToUpper() == "FRAMERATE"){
-                fps = int.Parse(line.Split(' ')[1]);
+            }else if(lns[0].ToUpper() == "FRAMERATE"){
+                fps = int.Parse(lns[1]);
                 continue;
-            }else if(line.Split(' ')[0].ToUpper() == "DVEL"){
-                track = int.Parse(line.Split(' ')[1]);
+            }else if(lns[0].ToUpper() == "DVEL"){
+                track = int.Parse(lns[1]);
                 continue;
-            }else if(line.Split(' ')[0].ToUpper() == "CONSTANT"){
-                Planet.GMUL = int.Parse(line.Split(' ')[1]);
+            }else if(lns[0].ToUpper() == "CONSTANT"){
+                Planet.GMUL = int.Parse(lns[1]);
+                continue;
+            }else if(lns[0].ToUpper() == "BACKGROUND"){
+                backgroundClr = clrs[lns[1]];
                 continue;
             }
             //Parsing the line itself
@@ -92,7 +97,7 @@ class Program{
         while(!WindowShouldClose()){
             //Autoclear
             if(autoclear)
-                ClearBackground(Color.BLACK);
+                ClearBackground(backgroundClr);
             //Targeting camera
             if(target != -1){
                 targetpos = Planet.planets[target].Position;
@@ -102,6 +107,11 @@ class Program{
             //Registering keypressess
             if(IsKeyPressed(KeyboardKey.KEY_F11)){
                 ToggleFullscreen();
+            }else if(IsKeyPressed(KeyboardKey.KEY_F2)){
+                Image screenshot = LoadImageFromScreen();
+                string scrfn = Directory.GetCurrentDirectory() + ("/screenshot_" + DateTime.Now.ToLongTimeString() + ".png").Replace(":",".");
+                if(!ExportImage(screenshot,scrfn))
+                    Console.Write("Fail!");
             }else if(IsKeyPressed(KeyboardKey.KEY_C)){
                 ClearBackground(Color.BLACK);
             }else{
@@ -132,11 +142,17 @@ class Program{
         return float.Parse(inr.Replace(".",","),System.Globalization.NumberStyles.Any);
     }
     static void InitColors(){
+        clrs.Add("WHITE",Color.WHITE);
+        clrs.Add("BLACK",Color.BLACK);
+
         clrs.Add("BLUE", Color.BLUE);
         clrs.Add("RED", Color.RED);
         clrs.Add("GREEN", Color.GREEN);
+
         clrs.Add("YELLOW", Color.YELLOW);
         clrs.Add("GRAY", Color.GRAY);
         clrs.Add("ORANGE", Color.ORANGE);
+        clrs.Add("PURPLE",Color.PURPLE);
+        clrs.Add("PINK",Color.PINK);
     }
 }

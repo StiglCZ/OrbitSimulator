@@ -1,5 +1,5 @@
 ## Orbit simulator
-#### Very simple orbit simulator made in C#
+Very simple orbit simulator made in C#
 
 #### Capabilities
 - Multiple planets/moons
@@ -26,6 +26,8 @@ FRAMERATE 120
 $ Gravitational constant (default 1)
 CONSTANT 1
 
+$ Sets background color (default BLACK)
+BACKGROUND BLACK
 $ Optional argument for displaying velocity of object (default -1 - Not displaying)
 DVEL 1
 
@@ -36,3 +38,11 @@ $ the last one is optional, used to make the object unaffected by gravity + inti
 500, 350,5,0,0.7, BLUE, FALSE
 490, 350,0.1,0,1.5, GREEN, FALSE
 ```
+Short demo: https://youtu.be/0OISRY4UWtk
+#### Command line arguments
+If you will specify existing file in cmd arguments, it will use it instead of default config file inside working directory
+#### Shortcuts
+C - Clears the screen if autoclearing is off
+SPACE/SHIFT - Speeds up/ Slows down the object with last idex (on end of config file) so you can edit simulation at runtime
+F2 - Takes a screenshot
+F11 - Toggless full screen(If you end simulation before undoing it, your monitor will set to vga resolution)
