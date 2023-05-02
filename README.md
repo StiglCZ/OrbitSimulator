@@ -6,7 +6,7 @@
 - Each planet making effect on all other ones
 - Simple config file system
 
-![Simulator_Screenshot](https://cdn.discordapp.com/attachments/947503302361354261/1103045726235263017/screenshot1.png)
+<img src="https://cdn.discordapp.com/attachments/947503302361354261/1103045726235263017/screenshot1.png" alt="Image" width="400" height="400">
 
 #### Config system
 My orbit simulator uses simple config system, which includes config for different things and planets itsels
